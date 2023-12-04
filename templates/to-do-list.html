@@ -1,0 +1,37 @@
+{% include "header.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+<body>
+<div class="card" style="width: 28rem;">
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for each in messages %}
+<p style="text-align: center; color: red;">{{each}}</p>
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="POST" action="/to-do-list">
+    <input type="search" class="form-control" placeholder="Add..." name="add" aria-label="Search">
+    {{ render_form(form, novalidate=True) }}
+</form>
+
+      <div class="col-lg-8 col-md-10 mx-auto">
+          <ul type="circle">
+              {% for each in lists %}
+              {% if each.completed == 1 %}
+              <li><s>{{each.lists}}</s></li>
+              {% else %}
+              <li>
+                  {{ each.lists }}
+                  <a href="{{ url_for('completed',id=each.id) }}">✅</a>
+                  <a href="{{url_for('delete',id=each.id) }}">❎</a>
+                  <a href="{{ url_for('edit',id=each.id) }}">✏️</a>
+              </li>
+              {% endif %}
+              {% endfor %}
+          </ul>
+
+
+      </div>
+</div>
+</body>

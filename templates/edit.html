@@ -1,0 +1,7 @@
+{% include "header.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+<body>
+<div class="card" style="width: 28rem;">
+    {{ render_form(form, novalidate=True) }}
+</div>
+</body>

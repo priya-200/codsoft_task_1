@@ -1,0 +1,18 @@
+{% include "header.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+<body>
+<div class="card" style="width: 28rem;">
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for each in messages %}
+<p style="text-align: center; color: red;">{{each}}</p>
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+      <!-- TODO: add a flash message here for users registering twice -->
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {{render_form(form,novalidate=True)}}
+      </div>
+</div>
+</body>
